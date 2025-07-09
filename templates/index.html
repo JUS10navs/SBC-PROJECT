@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gaming PC Price Predictor</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="button-top-left">
+        <a href="/history">
+            <button type="button">View History</button>
+        </a>
+    </div>
+    <form method="post">
+        <h2>Gaming PC Price Prediction</h2>
+
+        <label>Year</label>
+        <select name="year">
+            {% for year in years %}
+            <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Motherboard</label>
+        <select name="motherboard">
+            {% for item in motherboards %}
+            <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+        </select>
+
+        <label>CPU</label>
+        <select name="cpu">
+            {% for item in cpus %}
+            <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+        </select>
+
+        <label>GPU</label>
+        <select name="gpu">
+            {% for item in gpus %}
+            <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+        </select>
+
+        <label>RAM (GB)</label>
+        <select name="ram">
+            {% for ram in rams %}
+            <option value="{{ ram }}">{{ ram }} GB</option>
+            {% endfor %}
+        </select>
+
+        <label>Storage (GB)</label>
+        <select name="storage">
+            {% for storage in storages %}
+            <option value="{{ storage }}">{{ storage }} GB</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Predict Price</button>
+
+        {% if prediction %}
+        <div class="result">
+            <strong>Estimated Price:</strong> ₱{{ '{:,.2f}'.format(prediction) }}
+        </div>
+        {% endif %}
+    </form>
+</body>
+</html>
